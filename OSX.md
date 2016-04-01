@@ -182,7 +182,7 @@ mkdir -p ~/tmp && cd ~/tmp
 rails new verif_setup -T --database=postgresql
 ```
 
-Attendez un peu que ça terminel, ensuite :
+Attendez un peu que ça terminal, ensuite :
 
 ```bash
 cd verif_setup
@@ -191,6 +191,13 @@ rails s
 
 Lancez votre navigateur et allez à l'adresse [localhost:3000](http://localhost:3000). Si
 vous voyez la page de bienvenue de Rails, c'est tout bon !
+
+Vous pouvez faire un peu de ménage. Commencez par quitter le serveur (`Ctrl` + `C` dans le terminal) et tapez :
+
+```bash
+cd ~
+rm -rf ~/tmp/verif_setup
+```
 
 ## Étape 9 - Installer Sublime Text
 
