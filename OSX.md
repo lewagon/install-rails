@@ -186,6 +186,7 @@ Attendez un peu que ça terminal, ensuite :
 
 ```bash
 cd verif_setup
+rails db:create
 rails s
 ```
 
@@ -195,6 +196,8 @@ vous voyez la page de bienvenue de Rails, c'est tout bon !
 Vous pouvez faire un peu de ménage. Commencez par quitter le serveur (`Ctrl` + `C` dans le terminal) et tapez :
 
 ```bash
+cd ~/tmp/verif_setup
+rails db:destroy
 cd ~
 rm -rf ~/tmp/verif_setup
 ```
