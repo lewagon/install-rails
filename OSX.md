@@ -1,3 +1,5 @@
+# Installer Ruby on Rails sur Mac OS X
+
 ## Étape 1 - Installer les outils de ligne de commande
 
 Lancez l'application **Terminal** et tapez la ligne de commande suivante,
