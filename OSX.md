@@ -191,3 +191,54 @@ rails s
 
 Lancez votre navigateur et allez à l'adresse [localhost:3000](http://localhost:3000). Si
 vous voyez la page de bienvenue de Rails, c'est tout bon !
+
+## Étape 9 - Installer Sublime Text
+
+Sublime Text va être notre éditeur de texte dans lequel nous allons coder. Si vous ne l'avez pas encore, rendez-vous sur [cette page](https://www.sublimetext.com/3) pour le télécharger (version **OSX**). Une fois téléchargé, glissez-le dans le dossier Applications.
+
+Ensuite, nous allons installer le _Package Control_ de Sublime Text pour étendre ses fonctionnalités. Pour cela, rendez-vous sur [cette page](https://packagecontrol.io/installation#st3) et suivez les instructions.
+
+Lancez Sublime Text, et installez les packages suivants :
+
+- Emmet
+- Git
+- GitGutter
+
+Ouvrez le fichier de préférences et remplacez tout son contenu par :
+
+```json
+{
+  "detect_indentation": false,
+  "draw_white_space": true,
+  "ensure_newline_at_eof_on_save": true,
+  "folder_exclude_patterns":
+  [
+    "tmp",
+    "log",
+    ".git",
+    "_site",
+    ".bundle",
+    ".sass-cache",
+    "build"
+  ],
+  "highlight_modified_tabs": true,
+  "hot_exit": false,
+  "ignored_packages":
+  [
+    "Vintage"
+  ],
+  "remember_open_files": false,
+  "rulers":
+  [
+    80
+  ],
+  "tab_size": 2,
+  "translate_tabs_to_spaces": true,
+  "trim_automatic_white_space": true,
+  "trim_trailing_white_space_on_save": true,
+  "use_tab_stops": true,
+  "wordWrap": false
+}
+```
+
+Vous êtes prêt(e) à coder !
