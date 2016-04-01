@@ -29,8 +29,8 @@ brew update
 Maintenant, grâce à Homebrew, nous allons installer quelques logiciels :
 
 ```bash
-brew install git node
-brew install openssl && brew link openssl --force
+brew install git node openssl && brew link openssl --force
+brew tap homebrew/dupes && brew install libxml2 libxslt libiconv
 ```
 
 (Si vous aviez déjà Homebrew, remplacez `install` par `upgrade` dans les deux commandes ci-dessus)
