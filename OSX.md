@@ -211,6 +211,7 @@ Ensuite, nous allons installer le _Package Control_ de Sublime Text pour étendr
 
 Lancez Sublime Text, et installez les packages suivants :
 
+- All Autocomplete
 - Emmet
 - Git
 - GitGutter
@@ -248,7 +249,7 @@ Ouvrez le fichier de préférences et remplacez tout son contenu par :
   "trim_automatic_white_space": true,
   "trim_trailing_white_space_on_save": true,
   "use_tab_stops": true,
-  "wordWrap": false
+  "word_wrap": false
 }
 ```
 
