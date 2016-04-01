@@ -1,6 +1,6 @@
 Si vous êtes sur Windows, vous avez trois choix :
 
-1. Installer Ubuntu en [Dual Boot](http://www.everydaylinuxuser.com/2015/11/how-to-install-ubuntu-linux-alongside.html) puis suivre [le [tutoriel du programme FullStack](https://github.com/lewagon/setup/blob/master/UBUNTU.md)
+1. Installer Ubuntu en [Dual Boot](http://www.everydaylinuxuser.com/2015/11/how-to-install-ubuntu-linux-alongside.html) puis suivre le [tutoriel du programme FullStack](https://github.com/lewagon/setup/blob/master/UBUNTU.md)
 1. Si votre ordinateur est très puissant, installer une **machine virtuelle** avec [Virtual Box](https://www.virtualbox.org/), y installer Ubuntu et enfin suivre le même tutoriel ci-dessus.
 1. Préférer une option _cloud_, et dans ce cas continuer à lire ce qu'il y a ci-dessous.
 
@@ -9,7 +9,7 @@ Si vous êtes sur Windows, vous avez trois choix :
 ## Étape 1 - Créer un compte Nitrous
 
 Rendez-vous sur [nitrous.io](https://www.nitrous.io) et créez-vous un compte, c'est gratuit pour débuter (50h / mois).
-Confirmez votre email en cliquant sur le lien reçu dans votre boite ail.
+Confirmez votre email en cliquant sur le lien reçu dans votre boite mail.
 
 ## Étape 2 - Créer un nouveau projet
 
