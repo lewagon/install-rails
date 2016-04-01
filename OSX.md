@@ -197,7 +197,7 @@ Vous pouvez faire un peu de ménage. Commencez par quitter le serveur (`Ctrl` + 
 
 ```bash
 cd ~/tmp/verif_setup
-rails db:destroy
+rails db:drop
 cd ~
 rm -rf ~/tmp/verif_setup
 ```
