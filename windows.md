@@ -128,6 +128,6 @@ Bravo !
 ## :warning: ATTENTION!
 
 Pour ne pas consommer trop vite votre quota de 50 heures mensuelles, **éteignez** votre _workstation_
-lorsque vous avez fini de travailler :
+lorsque vous avez fini de travailler. C'est au niveau du [Dashboard](https://www.nitrous.io/app/#/dashboard/) :
 
 ![éteigner la workstation à partir du dashboard](img/stop_nitrous.png)
