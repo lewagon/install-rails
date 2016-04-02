@@ -24,8 +24,9 @@ Lors que le projet est prêt, cliquez sur _Open IDE_.
 Dans le terminal, lancez :
 
 ```bash
-if [ -h ~/.zshrc ]; then mv ~/.zshrc ~/.zshrc.backup; fi && curl https://raw.githubusercontent.com/lewagon/install-rails/master/zshrc > ~/.zshrc
+if [ -h ~/.zshrc ]; then mv ~/.zshrc ~/.zshrc.backup; fi && curl https://raw.githubusercontent.com/lewagon/dotfiles/master/zshrc > ~/.zshrc
 curl https://raw.githubusercontent.com/lewagon/dotfiles/master/irbrc > ~/.irbrc
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
 ## Étape 4 - Mise à jour de git et installation de dépendences
@@ -124,3 +125,9 @@ voir la page d'accueil de Rails.
 
 Bravo !
 
+## :warning: ATTENTION!
+
+Pour ne pas consommer trop vite votre quota de 50 heures mensuelles, **éteignez** votre _workstation_
+lorsque vous avez fini de travailler :
+
+![éteigner la workstation à partir du dashboard](img/stop_nitrous.png)

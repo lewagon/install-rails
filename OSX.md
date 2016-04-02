@@ -50,12 +50,13 @@ d'ordinateur, celui que vous tapez au démarrage de l'ordinateur ou en sortie de
 Tapez ce mot de passe (:warning: les caractères que vous tapez **n'apparaissent pas** pour
 des raisons de sécurité, c'est **normal**). Terminez par `Enter`.
 
-Ensuite tapez les trois lignes suivantes :
+Ensuite tapez les quatres lignes suivantes :
 
 ```bash
-if [ -h ~/.zshrc ]; then mv ~/.zshrc ~/.zshrc.backup; fi && curl https://raw.githubusercontent.com/lewagon/install-rails/master/zshrc > ~/.zshrc
+if [ -h ~/.zshrc ]; then mv ~/.zshrc ~/.zshrc.backup; fi && curl https://raw.githubusercontent.com/lewagon/dotfiles/master/zshrc > ~/.zshrc
 curl https://raw.githubusercontent.com/lewagon/dotfiles/master/irbrc > ~/.irbrc
 curl https://raw.githubusercontent.com/lewagon/dotfiles/master/gitconfig > ~/.gitconfig
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
 Fermez l'application **Terminal** (`⌘` + `Q`), relancez-là. Vous devriez voir `➜  ~` en vert. Si ce n'est pas le cas,
