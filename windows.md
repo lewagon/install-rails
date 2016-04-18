@@ -13,6 +13,8 @@ Confirmez votre email en cliquant sur le lien reçu dans votre boite mail.
 
 ## Étape 2 - Créer un nouveau projet
 
+![](img/new_nitrous_project.png)
+
 - Nommez votre projet
 - Sélectionnez le template "**Ruby**" (et pas Ruby on Rails)
 - Cliquez sur le bouton _Create a Project_
