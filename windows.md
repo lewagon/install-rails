@@ -77,7 +77,7 @@ Par défaut, la _workstation_ n'a pas la toute dernière version de Ruby. Dans l
 tapez la commande suivante puis la touche `Enter` :
 
 ```bash
-rbenv install 2.3.0 && rbenv global 2.3.0
+rbenv install 2.3.1 && rbenv global 2.3.1
 ```
 
 ## Étape 6 - Installation de PostgreSQL

@@ -130,7 +130,7 @@ ssh -T git@github.com
 Dans le **Terminal**, lancez la commande suivante :
 
 ```bash
-brew install rbenv ruby-build && rbenv install 2.3.0 && rbenv global 2.3.0
+brew install rbenv ruby-build && rbenv install 2.3.1 && rbenv global 2.3.1
 ```
 
 :warning: Elle devrait prendre 5-10 minutes, c'est normal, ce n'est pas "bloqué".
@@ -141,7 +141,7 @@ Ensuite, quittez le terminal (`⌘` + `Q`) et relancez-le. Tapez la commande sui
 ruby -v
 ```
 
-Si vous avez en retour une version contenant `ruby 2.3.0p`, tout est bon !
+Si vous avez en retour une version contenant `ruby 2.3.1p`, tout est bon !
 
 ## Étape 6 - Installer la base de données Postgresql
 
