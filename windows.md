@@ -102,7 +102,7 @@ gem install bundler pry hub
 Maintenant, nous pouvons **enfin** installer Rails :
 
 ```bash
-gem install rails -v 5.0.0.beta3
+gem install rails -v 5.0.0.rc1
 ```
 
 ## Étape 8 - Vérification que tout fonctionne :
@@ -115,7 +115,7 @@ Nous allons créer un dossier temporaire et y générer une application Rails de
 
 ```bash
 mkdir -p ~/tmp && cd ~/tmp
-rails new verif_setup -T --database=postgresql
+rails _5.0.0.rc1_ new verif_setup -T --database=postgresql
 cd verif_setup
 rails db:create
 rails s -b 0.0.0.0
