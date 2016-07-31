@@ -19,6 +19,8 @@ tapez la ligne suivante, suivie par la touche `Enter` :
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
+Cette ligne de commande 👆 va vous demander votre mot de passe. Il s'agit du **mot de passe de session** de votre ordinateur, tapez-le, rien ne s'affche, c'est normal. Finissez par la touche `Enter`.
+
 Si vous avez déjà Homebrew, vous aurez le message `It appears Homebrew is already installed.`.
 Dans ce cas, pas besoin de le désinstaller, une simple mise à jour suffit normalement :
 
@@ -26,14 +28,19 @@ Dans ce cas, pas besoin de le désinstaller, une simple mise à jour suffit norm
 brew update
 ```
 
-Maintenant, grâce à Homebrew, nous allons installer quelques logiciels :
+Maintenant, grâce à Homebrew, nous allons installer / mettre à jour quelques logiciels :
 
 ```bash
-brew install git node openssl && brew link openssl --force
-brew tap homebrew/dupes && brew install libxml2 libxslt libiconv
+function install_or_upgrade { brew ls | grep $1 > /dev/null; if (($? == 0)); then brew upgrade $1; else brew install $1; fi }
+install_or_upgrade "git"
+install_or_upgrade "node"
+install_or_upgrade "openssl"
+brew link openssl --force
+brew tap homebrew/dupes
+install_or_upgrade "libxml2"
+install_or_upgrade "libxslt"
+install_or_upgrade "libiconv"
 ```
-
-(Si vous aviez déjà Homebrew, remplacez `install` par `upgrade` dans les deux commandes ci-dessus)
 
 ## Étape 3 - Installer Oh my zsh
 
@@ -92,7 +99,7 @@ Cette commande est **intéractive**, elle va vous demander certaines information
 Enter file in which to save the key (/Users/seb/.ssh/id_rsa):
 ```
 
-Contentez-vous d'appuyer sur `Enter`.
+**Contentez-vous d'appuyer sur `Enter`**.
 
 Ensuite, la commande va vous demander une **`passphrase`**. Pour la sécurité, c'est important
 de protéger votre clé privée, un simple fichier sur votre ordinateur, par un mot de passe.
@@ -127,10 +134,20 @@ ssh -T git@github.com
 
 ## Étape 5 - Installer Ruby
 
-Dans le **Terminal**, lancez la commande suivante :
+Dans le **Terminal**, lancez les commandes suivantes (qui vous demanderont votre mot de passe de session) :
 
 ```bash
-brew install rbenv ruby-build && rbenv install 2.3.1 && rbenv global 2.3.1
+if [ -x "$(command -v rvm)" ]; then rvm implode && sudo rm -rf ~/.rvm; fi
+sudo rm -rf $HOME/.rbenv /usr/local/rbenv /opt/rbenv /usr/local/opt/rbenv
+```
+
+Continuez avec :
+
+```bash
+brew uninstall --force rbenv ruby-build
+unset RBENV_ROOT && source ~/.zshrc
+brew install rbenv ruby-build && source ~/.zshrc
+rbenv install 2.3.1 && source ~/.zshrc && rbenv global 2.3.1
 ```
 
 :warning: Elle devrait prendre 5-10 minutes, c'est normal, ce n'est pas "bloqué".
@@ -143,6 +160,8 @@ ruby -v
 
 Si vous avez en retour une version contenant `ruby 2.3.1p`, tout est bon !
 
+**Si vous ave une autre version de Ruby, merci de recommencer l'étape 5**.
+
 ## Étape 6 - Installer la base de données Postgresql
 
 Nous allons avoir besoin d'une base de données pour stocker les informations à propos
@@ -152,11 +171,10 @@ des utilisateurs, des produits, etc. Dans le **Terminal**, lancez la commande su
 brew install postgresql
 ```
 
-Attendez un peu que l'installation se termine, ensuite tapez les commandes suivantes :
+Attendez un peu que l'installation se termine, ensuite tapez la commande suivante:
 
 ```bash
-ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
-launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+brew services start postgresql
 ```
 
 Ainsi Postgresql tournera en tâche de fond et vous n'aurez pas à vous en soucier.
@@ -174,6 +192,8 @@ Maintenant, nous pouvons **enfin** installer Rails :
 ```bash
 gem install rails -v 5.0.0
 ```
+
+:warning: Veillez à ne **jamais** installer une gem avec `sudo gem install`. Pas de `sudo`! Même si certains site (comme des réponses StackOverflow) le recommandent !
 
 ## Étape 8 - Vérification que tout fonctionne :
 
