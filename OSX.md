@@ -35,7 +35,6 @@ function install_or_upgrade { brew ls | grep $1 > /dev/null; if (($? == 0)); the
 install_or_upgrade "git"
 install_or_upgrade "node"
 install_or_upgrade "openssl"
-brew link openssl --force
 brew tap homebrew/dupes
 install_or_upgrade "libxml2"
 install_or_upgrade "libxslt"
