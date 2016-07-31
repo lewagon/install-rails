@@ -36,9 +36,10 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 Dans le terminal en bas, tapez les commandes suivantes :
 
 ```bash
-sudo add-apt-repository ppa:git-core/ppa
 sudo apt-get update
-sudo apt-get install git nodejs imagemagick -y
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository -y ppa:git-core/ppa
+sudo apt-get install -y git nodejs imagemagick
 ```
 
 Nous allons maintenant configurer `git`. Dans le terminal tapez les commandes suivantes :
@@ -73,11 +74,18 @@ ssh -T git@github.com
 
 ## Étape 5 - Installer la dernière version de Ruby
 
-Par défaut, la _workstation_ n'a pas la toute dernière version de Ruby. Dans le terminal en bas,
-tapez la commande suivante puis la touche `Enter` :
+
+Tapez la commande suivante :
 
 ```bash
-rbenv install 2.3.1 && rbenv global 2.3.1
+ruby -v
+```
+
+Si vous aves une version inférieure à 2.3.1, tapez la commande suivante puis la touche `Enter` :
+
+```bash
+rbenv install 2.3.1
+rbenv global 2.3.1
 ```
 
 ## Étape 6 - Installation de PostgreSQL
@@ -102,7 +110,7 @@ gem install bundler pry hub
 Maintenant, nous pouvons **enfin** installer Rails :
 
 ```bash
-gem install rails -v 5.0.0.rc2
+gem install rails -v 5.0.0
 ```
 
 ## Étape 8 - Vérification que tout fonctionne :
@@ -115,7 +123,7 @@ Nous allons créer un dossier temporaire et y générer une application Rails de
 
 ```bash
 mkdir -p ~/tmp && cd ~/tmp
-rails _5.0.0.rc2_ new verif_setup -T --database=postgresql
+rails _5.0.0_ new verif_setup -T --database=postgresql
 cd verif_setup
 rails db:create
 rails s -b 0.0.0.0
