@@ -189,7 +189,7 @@ gem install bundler pry hub
 Maintenant, nous pouvons **enfin** installer Rails :
 
 ```bash
-gem install rails -v 5.0.0
+gem install rails -v 5.0.0.1
 ```
 
 :warning: Veillez à ne **jamais** installer une gem avec `sudo gem install`. Pas de `sudo`! Même si certains site (comme des réponses StackOverflow) le recommandent !
