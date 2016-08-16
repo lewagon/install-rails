@@ -123,7 +123,7 @@ Nous allons créer un dossier temporaire et y générer une application Rails de
 
 ```bash
 mkdir -p ~/tmp && cd ~/tmp
-rails _5.0.0_ new verif_setup -T --database=postgresql
+rails new verif_setup -T --database=postgresql
 cd verif_setup
 rails db:create
 rails s -b 0.0.0.0
