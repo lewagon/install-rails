@@ -69,7 +69,6 @@ Ensuite nous avons besoin de faire quelques petites configurations. Toujours dan
 
 ```bash
 sudo su - postgres
-sudo su - postgres
 psql --command "CREATE ROLE nitrous LOGIN createdb;"
 psql --command "UPDATE pg_database SET datistemplate = FALSE WHERE datname = 'template1';"
 psql --command "DROP DATABASE template1;"
