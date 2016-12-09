@@ -200,7 +200,7 @@ Nous allons créer un dossier temporaire et y générer une application Rails de
 
 ```bash
 mkdir -p ~/tmp && cd ~/tmp
-rails _5.0.0_ new verif_setup -T --database=postgresql
+rails _5.0.0.1_ new verif_setup -T --database=postgresql
 ```
 
 Attendez un peu que ça terminal, ensuite :
