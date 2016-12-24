@@ -189,7 +189,7 @@ gem install bundler pry hub
 Maintenant, nous pouvons **enfin** installer Rails :
 
 ```bash
-gem install rails -v 5.0.0.1
+gem install rails
 ```
 
 :warning: Veillez à ne **jamais** installer une gem avec `sudo gem install`. Pas de `sudo`! Même si certains site (comme des réponses StackOverflow) le recommandent !
@@ -200,7 +200,7 @@ Nous allons créer un dossier temporaire et y générer une application Rails de
 
 ```bash
 mkdir -p ~/tmp && cd ~/tmp
-rails _5.0.0.1_ new verif_setup -T --database=postgresql
+rails new verif_setup -T --database=postgresql
 ```
 
 Attendez un peu que ça terminal, ensuite :

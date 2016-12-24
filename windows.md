@@ -110,7 +110,7 @@ gem install bundler pry hub
 Maintenant, nous pouvons **enfin** installer Rails :
 
 ```bash
-gem install rails -v 5.0.0.1
+gem install rails
 ```
 
 ## Étape 8 - Vérification que tout fonctionne :
