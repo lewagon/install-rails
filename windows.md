@@ -4,45 +4,30 @@ Si vous êtes sur Windows, vous avez trois choix :
 1. Si votre ordinateur est très puissant, installer une **machine virtuelle** avec [Virtual Box](https://www.virtualbox.org/), y installer Ubuntu et enfin suivre le même tutoriel ci-dessus.
 1. Préférer une option _cloud_, et dans ce cas continuer à lire ce qu'il y a ci-dessous.
 
-# Configurer une _workstation_ Nitrous
+# Configurer une _workstation_ Cloud9
 
-## Étape 1 - Créer un compte Nitrous
+## Étape 1 - Créer un compte Cloud9
 
-Rendez-vous sur [nitrous.io](https://www.nitrous.io) et créez-vous un compte, c'est gratuit pour débuter (50h / mois).
-Confirmez votre email en cliquant sur le lien reçu dans votre boite mail.
+Rendez-vous sur [c9.io](https://c9.io) et créez-vous un compte. Vous allez pouvoir créer des _workspaces_, c'est-à-dire un environnement de travail. Dans le plan gratuit, il y a un seul _workspace_ privé. Vous pouvez créer d'autres workspaces (avec d'autres installations pour Python ou autre) mais dans ce cas ils seront **publics** (comme pour un repo GitHub public, n'importe qui pourra y accéder en lecture).
 
 ## Étape 2 - Créer un nouveau projet
 
-![](img/new_nitrous_project.png)
+![](img/new_c9_project.png)
 
-- Nommez votre projet
+- Nommez votre projet `rails-apps` car nous allons y mettre plusieurs applications Rails
+- Réglez votre workspace en **privé**
 - Sélectionnez le template "**Ruby**" (et pas Ruby on Rails)
-- Cliquez sur le bouton _Create a Project_
+- Cliquez sur le bouton _Create workspace_
 
-Lors que le projet est prêt, cliquez sur _Open IDE_.
-
-## Étape 3 - Configurer Oh My Zsh
-
-Dans le terminal, lancez :
+Après quelques seconds, votre environnement de développement est prêt. Par défaut, une application Rails a été générée, nous pouvons la supprimer avec la commande :
 
 ```bash
-if [ -h ~/.zshrc ]; then mv ~/.zshrc ~/.zshrc.backup; fi && curl https://raw.githubusercontent.com/lewagon/dotfiles/master/zshrc > ~/.zshrc
-curl https://raw.githubusercontent.com/lewagon/dotfiles/master/irbrc > ~/.irbrc
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+rm -rf ~/workspace/*
 ```
 
-## Étape 4 - Mise à jour de git et installation de dépendences
+## Étape 3 - Configuration de git et GitHub
 
 Dans le terminal en bas, tapez les commandes suivantes :
-
-```bash
-sudo apt-get update
-sudo apt-get install -y software-properties-common
-sudo add-apt-repository -y ppa:git-core/ppa
-sudo apt-get install -y git nodejs imagemagick
-```
-
-Nous allons maintenant configurer `git`. Dans le terminal tapez les commandes suivantes :
 
 ```bash
 curl https://raw.githubusercontent.com/lewagon/dotfiles/master/gitconfig > ~/.gitconfig
@@ -72,34 +57,39 @@ Pour vérifier que tout est configuré, tapez la commande :
 ssh -T git@github.com
 ```
 
-## Étape 5 - Installer la dernière version de Ruby
+## Étape 4 - Configuration de PostgreSQL
 
-
-Tapez la commande suivante :
+C'est la base de données :) Dans le terminal, démarrez le service de base de données :
 
 ```bash
-ruby -v
+sudo service postgresql start
 ```
 
-Si vous aves une version inférieure à 2.3.1, tapez la commande suivante puis la touche `Enter` :
+Ensuite nous avons besoin de faire quelques petites configurations. Toujours dans le terminal :
 
 ```bash
-rbenv install 2.3.1
-rbenv global 2.3.1
-```
-
-## Étape 6 - Installation de PostgreSQL
-
-C'est la base de données :) Dans le terminal, lancez les commandes suivantes :
-
-```bash
-sudo apt-get install postgresql postgresql-contrib libpq-dev -y
 sudo su - postgres
-psql --command "CREATE ROLE nitrous LOGIN createdb;"
+psql --command "CREATE ROLE ubuntu LOGIN createdb;"
+psql --command "UPDATE pg_database SET datistemplate = FALSE WHERE datname = 'template1';"
+psql --command "DROP DATABASE template1;"
+psql --command "CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = 'UNICODE';"
+psql --command "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template1';"
+psql --command "VACUUM FREEZE;"
 exit
 ```
 
-## Étape 7 - Installer Rails
+## Étape 5 - Installer la dernière version de Ruby
+
+Si vous tapez la commande `ruby -v`, vous devriez avoir par défaut une ancienne version de Ruby.
+Pour installer la toute dernière version, voici ce qu'il faut exécuter dans le terminal :
+
+```bash
+rvm install 2.3.1
+rvm --default use 2.3.1
+curl https://raw.githubusercontent.com/lewagon/dotfiles/master/irbrc > ~/.irbrc
+```
+
+## Étape 6 - Installer Rails
 
 Dans le **Terminal**, nous allons d'abord installer quelques gems utiles pour le cours.
 
@@ -113,31 +103,24 @@ Maintenant, nous pouvons **enfin** installer Rails :
 gem install rails
 ```
 
-## Étape 8 - Vérification que tout fonctionne :
+## Étape 7 - Vérification que tout fonctionne :
 
-D'abord nous devons configurer un port sur notre _workstation_. Allez dans le menu,
-_Preview_ -> _Configure Ports_. Ajoutez le port `3000` en _Primary_, validez les changements
-et redémarrez la station.
-
-Nous allons créer un dossier temporaire et y générer une application Rails de test :
+Nous allons maintenant créer une application de vérification :
 
 ```bash
-mkdir -p ~/tmp && cd ~/tmp
+cd ~/workspace
 rails new verif_setup -T --database=postgresql
 cd verif_setup
 rails db:create
 rails s -b 0.0.0.0
 ```
 
-Le serveur Rails va se lancer. Dans le menu, cliquez sur _Preview_ -> _Port 3000 (Default)_. Un
-nouvel onglet du navigateur va s'ouvrir avec une URL en `*.nitrousapp.com:3000` et vous devriez
-voir la page d'accueil de Rails.
+Le serveur Rails va se lancer sur le port `8080` (configuré automatiquement par Nitrous). Pour prévisualiser l'application, ils vous suffit de vous rendre à l'URL de la forme:
+
+```
+https://rails-apps-VOTRE_USERNAME.c9users.io
+```
+
+Si vous voyez l'écran d'accueil de Rails, vous avez réussi !
 
 Bravo !
-
-## :warning: ATTENTION!
-
-Pour ne pas consommer trop vite votre quota de 50 heures mensuelles, **éteignez** votre _workstation_
-lorsque vous avez fini de travailler. C'est au niveau du [Dashboard](https://www.nitrous.io/app/#/dashboard/) :
-
-![éteigner la workstation à partir du dashboard](img/stop_nitrous.png)
