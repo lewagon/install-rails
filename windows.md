@@ -84,8 +84,8 @@ Si vous tapez la commande `ruby -v`, vous devriez avoir par défaut une ancienne
 Pour installer la toute dernière version, voici ce qu'il faut exécuter dans le terminal :
 
 ```bash
-rvm install 2.3.1
-rvm --default use 2.3.1
+rvm install 2.3.5
+rvm --default use 2.3.5
 curl https://raw.githubusercontent.com/lewagon/dotfiles/master/irbrc > ~/.irbrc
 ```
 
