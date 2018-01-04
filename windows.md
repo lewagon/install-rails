@@ -6,24 +6,13 @@ Si vous êtes sur Windows, vous avez trois choix :
 
 # Configurer une _workstation_ Cloud9
 
-## Étape 1 - Créer un compte Cloud9
+## Étape 1 - Créer un compte AWS Cloud9
 
-Rendez-vous sur [c9.io](https://c9.io) et créez-vous un compte. Vous allez pouvoir créer des _workspaces_, c'est-à-dire un environnement de travail. Dans le plan gratuit, il y a un seul _workspace_ privé. Vous pouvez créer d'autres workspaces (avec d'autres installations pour Python ou autre) mais dans ce cas ils seront **publics** (comme pour un repo GitHub public, n'importe qui pourra y accéder en lecture).
+Rendez-vous sur [c9.io](https://c9.io) et créez-vous un compte.
 
 ## Étape 2 - Créer un nouveau projet
 
-![](img/new_c9_project.png)
-
-- Nommez votre projet `rails-apps` car nous allons y mettre plusieurs applications Rails
-- Réglez votre workspace en **privé**
-- Sélectionnez le template "**Ruby**" (et pas Ruby on Rails)
-- Cliquez sur le bouton _Create workspace_
-
-Après quelques seconds, votre environnement de développement est prêt. Par défaut, une application Rails a été générée, nous pouvons la supprimer avec la commande :
-
-```bash
-rm -rf ~/workspace/*
-```
+Vous allez pouvoir créer des environnements de travail. Pour rester dans le plan gratuit d'AWS, choisissez `t2.nano` comme instance EC2 au moment de la création.
 
 ## Étape 3 - Configuration de git et GitHub
 
@@ -59,9 +48,11 @@ ssh -T git@github.com
 
 ## Étape 4 - Configuration de PostgreSQL
 
-C'est la base de données :) Dans le terminal, démarrez le service de base de données :
+C'est la base de données :) Dans le terminal, installez et démarrez le service de base de données :
 
 ```bash
+yes | sudo yum install postgresql postgresql-server postgresql-devel postgresql-contrib postgresql-docs
+sudo service postgresql initdb -E utf8
 sudo service postgresql start
 ```
 
@@ -69,7 +60,7 @@ Ensuite nous avons besoin de faire quelques petites configurations. Toujours dan
 
 ```bash
 sudo su - postgres
-psql --command "CREATE ROLE ubuntu LOGIN createdb;"
+psql --command 'CREATE ROLE "ec2-user" LOGIN createdb;'
 psql --command "UPDATE pg_database SET datistemplate = FALSE WHERE datname = 'template1';"
 psql --command "DROP DATABASE template1;"
 psql --command "CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = 'UNICODE';"
@@ -78,48 +69,51 @@ psql --command "VACUUM FREEZE;"
 exit
 ```
 
-## Étape 5 - Installer la dernière version de Ruby
+## Étape 5 - Vérifiez que vous avez la dernière version de Ruby
 
-Si vous tapez la commande `ruby -v`, vous devriez avoir par défaut une ancienne version de Ruby.
-Pour installer la toute dernière version, voici ce qu'il faut exécuter dans le terminal :
+Tapez:
 
 ```bash
-rvm install 2.3.5
-rvm --default use 2.3.5
-curl https://raw.githubusercontent.com/lewagon/dotfiles/master/irbrc > ~/.irbrc
+ruby -v
 ```
+
+Si vous avez au moins 2.4, continuez!
 
 ## Étape 6 - Installer Rails
 
-Dans le **Terminal**, nous allons d'abord installer quelques gems utiles pour le cours.
+Installez également `yarn` qui est nécessaire depuis Rails 5.1:
 
 ```bash
-gem install bundler pry hub
+npm install -g yarn
 ```
 
-Maintenant, nous pouvons **enfin** installer Rails :
+Ensuite vérifiez votre version de Rails:
 
 ```bash
-gem install rails
+rails -v
 ```
+
+Si vous avez au moins 5.1, continuez!
 
 ## Étape 7 - Vérification que tout fonctionne :
 
 Nous allons maintenant créer une application de vérification :
 
 ```bash
-cd ~/workspace
-rails new verif_setup -T --database=postgresql
+cd ~/environment
+rails new verif_setup -T --webpacker --database=postgresql
 cd verif_setup
 rails db:create
 rails s -b 0.0.0.0
 ```
 
-Le serveur Rails va se lancer sur le port `8080` (configuré automatiquement par Nitrous). Pour prévisualiser l'application, ils vous suffit de vous rendre à l'URL de la forme:
+Le serveur Rails va se lancer sur le port `8080` (configuré automatiquement par Cloud9).
 
-```
-https://rails-apps-VOTRE_USERNAME.c9users.io
-```
+Ensuite, cliquez sur `Preview` en haut puis `Preview running application`. Une `Browser window` va apparaître, cliez sur le bouton "Pop out into new window":
+
+![](https://cdn-images-1.medium.com/max/800/1*tnEnYLJ9yueZvWXGnbdUtg.png)
+
+Et vous devriez avoir le "Yay you're on Rails!"
 
 Si vous voyez l'écran d'accueil de Rails, vous avez réussi !
 
