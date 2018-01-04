@@ -32,6 +32,9 @@ Maintenant, grâce à Homebrew, nous allons installer / mettre à jour quelques 
 
 ```bash
 function install_or_upgrade { brew ls | grep $1 > /dev/null; if (($? == 0)); then brew upgrade $1; else brew install $1; fi }
+```
+
+```bash
 install_or_upgrade "git"
 install_or_upgrade "node"
 install_or_upgrade "openssl"
@@ -39,6 +42,7 @@ brew tap homebrew/dupes
 install_or_upgrade "libxml2"
 install_or_upgrade "libxslt"
 install_or_upgrade "libiconv"
+install_or_upgrade "yarn"
 ```
 
 ## Étape 3 - Installer Oh my zsh
@@ -186,6 +190,12 @@ Dans le **Terminal**, nous allons d'abord installer quelques gems utiles pour le
 gem install bundler pry hub
 ```
 
+Installez également `yarn`, une dépendence de Rails depuis 5.1:
+
+```bash
+brew install yarn
+```
+
 Maintenant, nous pouvons **enfin** installer Rails :
 
 ```bash
@@ -200,7 +210,7 @@ Nous allons créer un dossier temporaire et y générer une application Rails de
 
 ```bash
 mkdir -p ~/tmp && cd ~/tmp
-rails new verif_setup -T --database=postgresql
+rails new verif_setup --webpacker -T --database=postgresql
 ```
 
 Attendez un peu que ça terminal, ensuite :
