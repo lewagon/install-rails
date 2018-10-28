@@ -159,7 +159,7 @@ Continuez avec :
 brew uninstall --force rbenv ruby-build
 unset RBENV_ROOT && source ~/.zshrc
 brew install rbenv ruby-build && source ~/.zshrc
-rbenv install 2.3.5 && source ~/.zshrc && rbenv global 2.3.5
+rbenv install 2.5.3 && source ~/.zshrc && rbenv global 2.5.3
 ```
 
 :warning: Elle devrait prendre 5-10 minutes, c'est normal, ce n'est pas "bloqué".
@@ -170,7 +170,7 @@ Ensuite, quittez le terminal (`⌘` + `Q`) et relancez-le. Tapez la commande sui
 ruby -v
 ```
 
-Si vous avez en retour une version contenant `ruby 2.3.5p`, tout est bon !
+Si vous avez en retour une version contenant `ruby 2.5.3p`, tout est bon !
 
 **Si vous ave une autre version de Ruby, merci de recommencer l'étape 5**.
 
