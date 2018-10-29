@@ -8,7 +8,11 @@ Si vous êtes sur Windows, vous avez trois choix :
 
 ## Étape 1 - Créer un compte AWS Cloud9
 
-Rendez-vous sur [c9.io](https://c9.io) et créez-vous un compte.
+Créez un compte AWS. Si vous en avez déjà un, vous pouvez l'utiliser pour ça.
+
+Allez sur [Cloud9](https://eu-west-1.console.aws.amazon.com/cloud9/home/product?region=eu-west-1). Vérifiez bien que vous êtes sur sur le datacenter **EU - Irland**.
+
+Cliquez ensuite sur "Create an environnment":
 
 ## Étape 2 - Créer un nouveau projet
 
@@ -31,6 +35,8 @@ et si possible mettez le [même email que celui de votre compte GitHub](https://
 Nous allons maintenant nous occuper de la [clé SSH](https://fr.wikipedia.org/wiki/Secure_Shell#SSH_avec_authentification_par_cl.C3.A9s) pour pouvoir communiquer avec GitHub par le terminal. Nitrous nous a déjà généré une paire de clé, il suffit de donner la clé publique à GitHub. Dans le terminal, lancez la commande :
 
 ```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+# Faites ensuite "Enter" plusieurs fois
 cat ~/.ssh/id_rsa.pub
 ```
 
